@@ -1,19 +1,26 @@
 package com.tzygun.BeerBlind.domain.beer.service;
 
 import com.tzygun.BeerBlind.domain.beer.dto.Beer;
-import com.tzygun.BeerBlind.domain.beer.repository.BeerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class BeerServiceImpl implements BeerService {
 
-    private final BeerRepository beerRepository;
+    private final BeerRepositoryInMemory beerRepository;
+
     @Override
     public Mono<Beer> addBeer(Beer beer) {
-//        Mono<Beer> save = beerRepository.save(beer);
-        return Mono.fromSupplier(()-> beer);
+        return beerRepository
+                .save(beer);
+    }
+
+    @Override
+    public Mono<List<Beer>> getBeers() {
+        return beerRepository.getBeers();
     }
 }

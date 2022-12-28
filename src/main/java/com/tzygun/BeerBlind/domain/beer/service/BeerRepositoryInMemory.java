@@ -5,9 +5,9 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-public interface BeerService {
+public interface BeerRepositoryInMemory {
 
-    Mono<Beer> addBeer(Beer beer);
+    Mono<Beer> save(Beer beer);
 
     Mono<List<Beer>> getBeers();
 }
